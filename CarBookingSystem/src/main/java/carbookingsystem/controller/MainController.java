@@ -83,7 +83,6 @@ public class MainController {
 	@RequestMapping("/logout")
 	public String logout(@ModelAttribute("User") User user, HttpServletRequest request) throws Exception {
 		session = request.getSession(false);
-
 		session.invalidate();
 		return "login";
 
@@ -97,6 +96,7 @@ public class MainController {
 		if (user1.getType() == 1)
 			return "add_user";
 		else {
+			session.invalidate();//
 			m.addAttribute("msg", "you dont have  privilege for this page");
 			return "landing";
 		}
@@ -119,6 +119,7 @@ public class MainController {
 			m.addAttribute("res", "data inserted succesfuly");
 			return "add_user";
 		} else {
+			session.invalidate();//
 			m.addAttribute("msg", "you dont have  privilege for this page");
 			return "landing";
 		}
@@ -133,6 +134,7 @@ public class MainController {
 			m.addAttribute("title", "Add Vehicle");
 			return "add_vehicle";
 		} else {
+			session.invalidate();//
 			m.addAttribute("msg", "you dont have  privilege for this page");
 			return "landing";
 		}
@@ -154,9 +156,9 @@ public class MainController {
 			}
 			vehicleDao.createVehicle(vehicle);
 			request.setAttribute("res", "data inserted succesfuly");
-			// m.addAttribute("res", "data inserted succesfuly");
 			return "add_vehicle";
 		} else {
+			session.invalidate();//
 			m.addAttribute("msg", "you dont have  privilege for this page");
 			return "landing";
 		}
@@ -164,16 +166,37 @@ public class MainController {
 
 	// handler for Listing all vehicles
 	@GetMapping("/list-all-vehicle")
-	public String handlerAllVehicle(HttpServletRequest request, HttpServletResponse response) {
+	public String handlerAllVehicle(HttpServletRequest request, Model m) {
+		session = request.getSession(false);
+		user1 = (User) session.getAttribute("user");
+		if (user1.getType() == 1) {
 		request.setAttribute("listVehicle", vehicleDao.ListAllVehicle());
-		return "list_all_vehicle";
+		return "list_all_vehicle";}
+		else
+		{
+			session.invalidate();//
+			m.addAttribute("msg", "you dont have  privilege for this page");
+			return "landing";
+		
+		}
 	}
 
 	// handler for listing all users
 	@GetMapping(value = "/list-all-users")
-	public String handlerAllUser(HttpServletRequest request, HttpServletResponse response) {
+	public String handlerAllUser(HttpServletRequest request ,Model m) {
+		session = request.getSession(false);
+		user1 = (User) session.getAttribute("user");
+		if (user1.getType() == 1) {
 		request.setAttribute("listUser", userDao.ListAllUser());
-		return "list_all_users";
+		return "list_all_users";}
+		else
+		{
+			session.invalidate();//
+			m.addAttribute("msg", "you dont have  privilege for this page");
+			return "landing";
+		
+		}
+		
 	}
 
 	// mapper for return jsp page of reservation history
@@ -295,11 +318,9 @@ public class MainController {
 	// handler for display all vehicle information to user only
 	@RequestMapping("/list-all-vehicle-user")
 	public String handlerListAllVehicleUser(HttpServletRequest request, User user) {
-		System.out.println(2);
 		session = request.getSession(false);
 		user = (User) session.getAttribute("user");
 		request.setAttribute("listVehicle", vehicleDao.ListAllVehicle());
-		System.out.println(user.getId());
 		return "list_all_vehicle_user";
 	}
 
@@ -381,52 +402,10 @@ public class MainController {
 			}
 
 		}
-	
-	
-	/*@RequestMapping("create-reservation-admin")
-	public String mapperCreateReservationAdmin(HttpServletRequest request,Model model) {
-		session = request.getSession(false);
-		
-		User user = (User) session.getAttribute("user");
-		if (user.getType() == 1) {
-			model.addAttribute("userall",userDao.ListAllUser());
-			model.addAttribute("vehicleall",vehicleDao.ListAllVehicle());
-			
-			return "create_reservation_admin";
-		} else {
-			model.addAttribute("msg", "you dont have  privilege for this page");
-			return "landing";
-		}
-	}*/
-
-	/*@RequestMapping(value = "confrom-Reservation-admin", method = RequestMethod.POST)
-	public String handlerCreateReservationAdmin(@ModelAttribute ReservationnVo reservationnVo, Model model,HttpServletRequest request)
-			throws Exception {
-		System.out.println(request.getParameter("userid"));
-		System.out.println(request.getParameter("vehicleid"));
-		
-
-		boolean res = false;
-		try {
-			reservationnVo.setUserId(request.getParameter("userid"));
-			reservationnVo.setUserId(request.getParameter("vehicleid"));
-			res = service.processReservation(reservationnVo);
-			res = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			res = false;
-		}
-		if (res = true) {
-			model.addAttribute("msg", "Reservation created successfully");
-			return "create_reservation";
-		} else {
-			model.addAttribute("msg", "Reservation failed");
-			return "landing";
-		}
-	}*/
+	//for handling all type of exception
 	@ExceptionHandler(value = Exception.class)
 	public String customException() {
-		return "custom_page";
+		return "error";
 	}
 	
 }

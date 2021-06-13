@@ -47,7 +47,6 @@ public class UserDao {
 		obj[0] = email;
 		obj[1] = password;
 		list = hibernateTemplate.find("from User u where u.email= ? and u.password=?", obj);
-		System.out.println("Query executed" + list);
 		if (!list.isEmpty()) {
 			user = (User) list.get(0);
 			return user;
@@ -90,7 +89,7 @@ public class UserDao {
 	System.out.println(rs.next());
 	String[] obj; 
 	while(rs.next())
-	{	System.out.println("======================================================");
+	{	
 		obj= new String[7];
 		obj[0]=rs.getString(1);
 		obj[1]=rs.getString(2);
