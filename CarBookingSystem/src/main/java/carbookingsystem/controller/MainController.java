@@ -74,7 +74,7 @@ public class MainController {
 					return "welcomeuser";
 				}
 			} else {
-				request.setAttribute("msg", "you have enter wrong credentials ");
+				request.setAttribute("msg", "You have entered wrong Credentials ");
 				return "landing";
 			}
 		}

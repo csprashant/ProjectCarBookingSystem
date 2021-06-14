@@ -26,9 +26,9 @@ public class ReservationService {
 		BeanUtils.copyProperties(rvo, reservationn);
 		reservationn.setId(0);
 		reservationn.setUserName(rvo.getUserName());
-		reservationn.setFromDate(new SimpleDateFormat("yyyy-mm-dd").parse(rvo.getFromDate()));
+		reservationn.setFromDate(new SimpleDateFormat("yyyy-MM-dd").parse(rvo.getFromDate()));
 		System.out.println("----->"+reservationn.getFromDate());
-		reservationn.setToDate(new SimpleDateFormat("yyyy-mm-dd").parse(rvo.getToDate()));
+		reservationn.setToDate(new SimpleDateFormat("yyyy-MM-dd").parse(rvo.getToDate()));
 		reservationn.setStatus(true);
 		reservationn.setUserId(Integer.valueOf(rvo.getUserId()));
 		reservationn.setVehicleId(Integer.valueOf(rvo.getVehicleId()));

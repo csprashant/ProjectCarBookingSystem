@@ -7,8 +7,9 @@
 <%@include file="./base.jsp"%>
 </head>
 <body>
-<h1><font color="red">!!!!!!Sorry try next time</font></h1>
+<center>
 <h3><font color="red">${msg}</font></h3>
 <a href="/CarBookingSystem/">Try Again</a>
+</center>
 </body>
 </html>
