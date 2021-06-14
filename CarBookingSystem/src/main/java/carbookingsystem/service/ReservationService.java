@@ -52,8 +52,9 @@ public class ReservationService {
 			reservationnvo.setUserId(listReservation.get(i).getUserId() + "");
 			reservationnvo.setUserName(listReservation.get(i).getUserName());
 			reservationnvo.setVehicleId(listReservation.get(i).getVehicleId() + "");
-			reservationnvo.setFromDate(listReservation.get(i).getFromDate() + "");
-			reservationnvo.setToDate(listReservation.get(i).getToDate() + "");
+			reservationnvo.setFromDate((listReservation.get(i).getFromDate() + "").substring(0, 10));
+			System.out.println(reservationnvo.getFromDate().substring(0, 10));
+			reservationnvo.setToDate((listReservation.get(i).getToDate() + "").substring(0, 10));
 			reservationnvo.setStatus(listReservation.get(i).isStatus() + "");
 			reservationnvo.setUpdated(listReservation.get(i).getUpdated() + "");
 			reservationnvo.setCreated(listReservation.get(i).getCreated() + "");

@@ -19,14 +19,14 @@
 	</c:if>
 	<c:if test="${not empty listreservation }">
 		<div class="viewport">
-			<table border=5 align="center">
+			<table border="2" bordercolor="black" align="center">
 				<tr>
 					<th>Reservation ID</th>
 					<th>UserID</th>
 					<th>Vehicle ID</th>
 					<th>User Name</th>
-					<th>From Date</th>
-					<th>To Date</th>
+					<th>From Date<br>(YYYY-MM-DD)</th>
+					<th>To Date<br>(YYYY-MM-DD)</th>
 					<th>Status</th>
 				</tr>
 				<c:forEach items="${listreservation}" var="res">
@@ -35,8 +35,8 @@
 						<td>UID0X1015U<c:out value="${res.userId}" /></td>
 						<td>VIDX0102B<c:out value="${res.vehicleId}" /></td>
 						<td align="center"><c:out value="${res.userName}" /></td>
-						<td><c:out value="${res.fromDate}" /></td>
-						<td><c:out value="${res.toDate}" /></td>
+						<td align="center"><c:out value="${res.fromDate}" /></td>
+						<td align="center"><c:out value="${res.toDate}" /></td>
 						<td><c:choose>
 								<c:when test="${res.status==true}">
 									<c:out value="Booked" />

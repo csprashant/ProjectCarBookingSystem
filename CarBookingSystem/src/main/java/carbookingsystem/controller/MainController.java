@@ -57,7 +57,7 @@ public class MainController {
 	}
 
 	@PostMapping("/handle-login")
-	public String handleLogin(@Valid @ModelAttribute("User") User user, BindingResult result,
+	public String handleLogin(@Valid @ModelAttribute("User") User user,Model m,
 			HttpServletRequest request) throws Exception {
 
 		if (user.getEmail().length() == 0 || user.getPassword().length() == 0) {
@@ -70,6 +70,7 @@ public class MainController {
 				if (user1.getType() == 1) {
 					return "welcome";
 				} else {
+					
 					return "welcomeuser";
 				}
 			} else {

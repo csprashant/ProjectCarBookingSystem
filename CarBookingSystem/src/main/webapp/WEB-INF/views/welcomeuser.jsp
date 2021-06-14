@@ -8,11 +8,16 @@
 <%@include file="./base.jsp"%>
 </head>
 <body>
-<nav><center>
-||<a href="/CarBookingSystem/list-all-vehicle-user" >List All Vehicle</a>
-||<a href="/CarBookingSystem/logout" >Logout</a>||&nbsp;&nbsp;&nbsp;</center>
-||<a href="/CarBookingSystem/reservation-status" >Reservation Status</a>||&nbsp;&nbsp;&nbsp;</center>
+<br>
+<p><h4 align="center">Welcome ${user.name }</h4></P>
+				
 
+<br>
+<br>
+<nav><center>
+||<a href="/CarBookingSystem/list-all-vehicle-user" >List All Vehicle</a>||&nbsp;&nbsp;&nbsp;
+||<a href="/CarBookingSystem/reservation-status" >Reservation Status</a>||&nbsp;&nbsp;&nbsp;
+||<a href="/CarBookingSystem/logout" >Logout</a></center>
 </nav>
 </body>
 </html>
