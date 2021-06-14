@@ -388,6 +388,7 @@ public class MainController {
 
 			boolean res = false;
 			try {
+				System.out.println(reservationnVo.getFromDate());
 				res = service.processReservation(reservationnVo);
 				res = true;
 			} catch (Exception e) {

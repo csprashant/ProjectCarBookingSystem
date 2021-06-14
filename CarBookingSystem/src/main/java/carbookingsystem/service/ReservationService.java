@@ -27,6 +27,7 @@ public class ReservationService {
 		reservationn.setId(0);
 		reservationn.setUserName(rvo.getUserName());
 		reservationn.setFromDate(new SimpleDateFormat("yyyy-mm-dd").parse(rvo.getFromDate()));
+		System.out.println("----->"+reservationn.getFromDate());
 		reservationn.setToDate(new SimpleDateFormat("yyyy-mm-dd").parse(rvo.getToDate()));
 		reservationn.setStatus(true);
 		reservationn.setUserId(Integer.valueOf(rvo.getUserId()));
@@ -53,7 +54,6 @@ public class ReservationService {
 			reservationnvo.setUserName(listReservation.get(i).getUserName());
 			reservationnvo.setVehicleId(listReservation.get(i).getVehicleId() + "");
 			reservationnvo.setFromDate((listReservation.get(i).getFromDate() + "").substring(0, 10));
-			System.out.println(reservationnvo.getFromDate().substring(0, 10));
 			reservationnvo.setToDate((listReservation.get(i).getToDate() + "").substring(0, 10));
 			reservationnvo.setStatus(listReservation.get(i).isStatus() + "");
 			reservationnvo.setUpdated(listReservation.get(i).getUpdated() + "");
